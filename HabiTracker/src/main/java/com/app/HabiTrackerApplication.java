@@ -15,8 +15,11 @@ import static springfox.documentation.builders.PathSelectors.regex;
 import java.util.Collections;
 
 @SpringBootApplication
+
 @EnableSwagger2
-@ComponentScan({"com.controller"})
+
+@ComponentScan({"com.controller", "com.services", "com.repositories"})
+
 public class HabiTrackerApplication {
 
 	public static void main(String[] args) {
