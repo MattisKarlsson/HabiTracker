@@ -1,28 +1,23 @@
 package com.entities;
 
+import java.util.Date;
+import java.util.UUID;
+
 public class Habit {
-	
-	public Habit() {
 
-	}
-
-	public Habit(int id, String habitName, double habitDuration) {
-		this.id = id;
-		this.habitName = habitName;
-		this.habitDuration = habitDuration;
-	}
-
-	private int id;
+	private UUID id;
 	private String habitName;
 	private double habitDuration;
+	private Date createdAt;
+	private Date updatedAt;
 
-	
+
 	// Getters & Setters
-	public int getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
@@ -42,5 +37,20 @@ public class Habit {
 		this.habitDuration = habitDuration;
 	}
 
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
 	}
