@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+feature/add-layered-architecture
 @ComponentScan({"com.controller", "com.services", "com.repositories"})
 public class HabiTrackerApplication {
 
