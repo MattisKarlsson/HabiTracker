@@ -4,7 +4,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,41 +16,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.entities.*;
+import com.requests.AddHabitRequest;
+import com.requests.UpdateHabitRequest;
+import com.services.HabitService;
 
 @RestController
 @RequestMapping("/api/habits/")
 public class HabitsController {
 
+	@Autowired
+	private HabitService habitService;
 	
-	Map<Integer, Habit> habits = new HashMap<Integer, Habit>();
 	
 	@GetMapping("/")
 	public Collection<Habit> getAll() {
-		return habits.values();
+		return habitService.getAll();
 	}
 	
 	@GetMapping("/{id}")
-	public Habit getById(@PathVariable int id) {
-		return habits.get(id);
+	public Habit getById(@PathVariable UUID id) {
+		return habitService.getById(id);
 	}
 	
 	@PostMapping("/")
-	public Habit addNewHabit(@RequestBody Habit habit) {
-		habits.put(habit.getId(), habit);
-		return habit;
+	public Habit addNewHabit(@RequestBody AddHabitRequest request) {
+		return habitService.addHabit(request);
 	}
 	
 	@PutMapping("/{id}")
-	public Habit updateHabit(@PathVariable int id, @RequestBody Habit updatedHabit) {
-		
-		Habit habit = habits.get(id);
-		habit.setHabitName(updatedHabit.getHabitName());
-		habit.setHabitDuration(updatedHabit.getHabitDuration());
-		return habit;
+	public Habit updateHabit(@PathVariable UUID id, @RequestBody UpdateHabitRequest request) {
+		return habitService.updateHabit(id, request);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteHabit(@PathVariable int id) {
-		habits.remove(id);
+	public void deleteHabit(@PathVariable UUID id) {
+		habitService.deleteHabit(id);
 	}
 }
