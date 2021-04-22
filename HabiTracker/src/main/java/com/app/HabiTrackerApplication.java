@@ -24,8 +24,9 @@ public class HabiTrackerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HabiTrackerApplication.class, args);
-	
 	}
+	
+
 	@Bean
 	public Docket swaggerConfiguration() {
 		// This returns a prepared Docket for Swagger. 
@@ -36,7 +37,9 @@ public class HabiTrackerApplication {
 				.build()
 				.apiInfo(apiDetails());
 	}
-private ApiInfo apiDetails() {
+
+	
+	private ApiInfo apiDetails() {
 		return new ApiInfo(
 				"Habit API",
 				"Track your good and bad habits for a better life",
@@ -46,13 +49,10 @@ private ApiInfo apiDetails() {
 							"Christian Torlegard",
 							"https://google.com",
 							"christian.torlegard@outlook.com"),							
+
 				"API License",
 				"https://google.com",
 		Collections.emptyList()
 		);
 }
 }
-	
-
-	
-

@@ -22,6 +22,7 @@ public class Habit {
 	private Date createdAt;
 	
 	@ApiModelProperty(notes = "Date and time habit/task was updated.")
+
 	private Date updatedAt;
 
 

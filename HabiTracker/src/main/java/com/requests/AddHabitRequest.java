@@ -13,7 +13,7 @@ public class AddHabitRequest {
 	@ApiModelProperty(notes = "Duration of your tracked habit")
 	private double habitDuration;
 	
-	
+
 	public String getHabitName() {
 		return habitName;
 	}

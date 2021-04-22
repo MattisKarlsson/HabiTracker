@@ -39,6 +39,7 @@ public class HabitsController {
 			notes = "Fetches all habits from the API",
 			response = Habit.class,
 			responseContainer = "List")		
+
 	public Collection<Habit> getAll() {
 		return habitService.getAll();
 	}
@@ -52,6 +53,7 @@ public class HabitsController {
 	public Habit getById(
 			@ApiParam(value = "ID of the Habit", required = false)
 			@PathVariable UUID id) {
+
 		return habitService.getById(id);
 	}
 	
@@ -60,6 +62,7 @@ public class HabitsController {
 			value = "Add new habit",
 			notes = "Add a new habit to your tracker",
 			response = Habit.class)
+
 	public Habit addNewHabit(@RequestBody AddHabitRequest request) {
 		return habitService.addHabit(request);
 	}
@@ -69,6 +72,7 @@ public class HabitsController {
 			value = "Update habit",
 			notes = "Update habit name and/or duration. Once task completed it will be moved to \"Done\"",
 			response = Habit.class)
+
 	public Habit updateHabit(@PathVariable UUID id, @RequestBody UpdateHabitRequest request) {
 		return habitService.updateHabit(id, request);
 	}
@@ -78,6 +82,7 @@ public class HabitsController {
 			value = "Delete habit",
 			notes = "Deletes specified habit/task.",
 			response = Habit.class)
+
 	public void deleteHabit(@PathVariable UUID id) {
 		habitService.deleteHabit(id);
 	}
