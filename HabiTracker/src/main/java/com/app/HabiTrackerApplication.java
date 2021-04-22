@@ -25,8 +25,8 @@ public class HabiTrackerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HabiTrackerApplication.class, args);
 	}
-	
 
+  
 	@Bean
 	public Docket swaggerConfiguration() {
 		// This returns a prepared Docket for Swagger. 
@@ -36,7 +36,9 @@ public class HabiTrackerApplication {
 				.apis(RequestHandlerSelectors.basePackage("com."))
 				.build()
 				.apiInfo(apiDetails());
+
 	}
+
 
 	
 	private ApiInfo apiDetails() {
@@ -54,5 +56,6 @@ public class HabiTrackerApplication {
 				"https://google.com",
 		Collections.emptyList()
 		);
+    
 }
 }

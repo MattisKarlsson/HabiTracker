@@ -1,9 +1,6 @@
 package com.controller;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +18,9 @@ import com.requests.AddHabitRequest;
 import com.requests.UpdateHabitRequest;
 import com.services.HabitService;
 
+
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-
 
 @RestController
 @RequestMapping("/api/habits/")
@@ -44,7 +41,7 @@ public class HabitsController {
 		return habitService.getAll();
 	}
 	
-	
+
 	@GetMapping("/{id}")
 	@ApiOperation(
 			value = "Get habit by ID",
@@ -53,6 +50,7 @@ public class HabitsController {
 	public Habit getById(
 			@ApiParam(value = "ID of the Habit", required = false)
 			@PathVariable UUID id) {
+
 
 		return habitService.getById(id);
 	}
@@ -82,6 +80,7 @@ public class HabitsController {
 			value = "Delete habit",
 			notes = "Deletes specified habit/task.",
 			response = Habit.class)
+
 
 	public void deleteHabit(@PathVariable UUID id) {
 		habitService.deleteHabit(id);
