@@ -1,22 +1,13 @@
 package com.requests;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class UpdateHabitRequest {
 
 	private String habitName;
-	private double habitDuration;
+	private int habitDuration;
 	
-	
-	
-	public String getHabitName() {
-		return habitName;
-	}
-	public void setHabitName(String habitName) {
-		this.habitName = habitName;
-	}
-	public double getHabitDuration() {
-		return habitDuration;
-	}
-	public void setHabitDuration(double habitDuration) {
-		this.habitDuration = habitDuration;
-	}
 }
