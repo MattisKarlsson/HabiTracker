@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.entities.Activity;
 import com.entities.Habit;
 import com.repositories.HabitInMemoryRepository;
 import com.requests.AddHabitRequest;
@@ -26,14 +27,23 @@ public class HabitService {
 	public Habit getById(UUID id) {
 		return habitRepo.getById(id);
 	}
+
 	
 	public Habit addHabit(AddHabitRequest request) {
+		
+		var activity = new Activity();
+		activity.setId(UUID.randomUUID());
+		activity.setDuration(request.getDuration());
+		activity.setDescription(request.getDescription());
+		activity.setCreatedAt(new Date());
+		activity.setUpdatedAt(new Date());
 		
 		var habit = new Habit();
 		habit.setId(UUID.randomUUID());
 		habit.setHabitName(request.getHabitName());
-		habit.setHabitDuration(request.getHabitDuration());
 		habit.setCreatedAt(new Date());
+
+		habit.setActivity(activity);
 		
 		return habitRepo.addHabit(habit);
 	}
@@ -41,7 +51,6 @@ public class HabitService {
 	public Habit updateHabit(UUID id, UpdateHabitRequest request) {		
 		var habit = habitRepo.getById(id);		
 		habit.setHabitName(request.getHabitName());
-		habit.setHabitDuration(request.getHabitDuration());
 		habit.setUpdatedAt(new Date());		
 		return habitRepo.updateHabit(id, habit);
 	}
