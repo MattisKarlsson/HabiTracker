@@ -4,7 +4,10 @@ package com.services;
 	import java.util.ArrayList;
 	import java.util.Collection;
 	import java.util.Date;
-	import org.springframework.beans.factory.annotation.Autowired;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.data.domain.Sort;
 	import org.springframework.stereotype.Service;
 
@@ -22,11 +25,10 @@ import com.requests.UpdateUserRequest;
 	@Service
 	public class UserService {
 
-		@Autowired
-		private UserSqlRepository userRepo;
+		Logger logger = LoggerFactory.getLogger(UserService.class);
 
 		@Autowired
-		private ActivitySqlRepository activityRepo;
+		private UserSqlRepository userRepo;
 
 		@Autowired
 		private HabitSqlRepository habitRepo;
@@ -68,6 +70,7 @@ import com.requests.UpdateUserRequest;
 				user.setHabits(habits);
 			}
 
+			logger.info("Successfully created new Student");
 			return user;
 
 		}
@@ -75,10 +78,20 @@ import com.requests.UpdateUserRequest;
 		public User updateUser(Long id, UpdateUserRequest request) {
 			var user = userRepo.findById(id).get();
 			user.setLastName(request.getLastName());
-			return userRepo.save(user);
+			user = userRepo.save(user);
+
+			logger.info("Updated User");
+			return user;
 		}
 
 		public void deleteUser(Long Id) {
+			try {
+				userRepo.deleteById(Id);
+				logger.info("Successfully deleted user with id: " + Id); 
+			}
+			catch(Exception ex) {
+				logger.error("Failed to delete user with id: " + Id, ex);
+			}
 			userRepo.deleteById(Id);
 		}
 

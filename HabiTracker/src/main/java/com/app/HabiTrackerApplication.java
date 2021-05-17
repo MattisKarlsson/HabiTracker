@@ -21,7 +21,7 @@ import java.util.Collections;
 @EnableSwagger2
 
 // removed ComponentScan for repositories since it will be scanned by using "EnableJpaRepositories"
-@ComponentScan({"com.controller", "com.services"})
+@ComponentScan({"com.controller", "com.services", "com.aop"})
 @EntityScan("com.entities")
 @EnableJpaRepositories("com.repositories")
 
