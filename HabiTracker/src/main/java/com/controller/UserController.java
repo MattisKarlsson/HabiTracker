@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,18 @@ public class UserController {
 	Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	private final UserService userService;
+
+	@GetMapping("/log")
+	public String testLogging(){
+
+		logger.trace("TRACE Logging");
+		logger.debug("DEBUG Logging");
+		logger.info("INFO Logging");
+		logger.warn("WARN Logging");
+		logger.error("ERROR Logging");
+
+		return "Logging successful";
+	}
 
 	@GetMapping("/log")
 	public String testLogging(){

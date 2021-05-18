@@ -7,6 +7,7 @@ package com.services;
 
 	import org.slf4j.Logger;
 	import org.slf4j.LoggerFactory;
+
 	import org.springframework.data.domain.Sort;
 	import org.springframework.stereotype.Service;
 
@@ -22,6 +23,15 @@ package com.services;
 	import com.requests.UpdateUserRequest;
 
 
+	import com.entities.Habit;
+	import com.entities.User;
+	import com.repositories.HabitSqlRepository;
+	import com.repositories.UserSqlRepository;
+	import com.requests.AddHabitRequest;
+	import com.requests.AddUserRequest;
+	import com.requests.UpdateHabitRequest;
+	import com.requests.UpdateUserRequest;
+
 	@Service
 	@RequiredArgsConstructor
 	public class UserService {
@@ -29,6 +39,7 @@ package com.services;
 		Logger logger = LoggerFactory.getLogger(UserService.class);
 		private final UserSqlRepository userRepo;
 		private final HabitSqlRepository habitRepo;
+
 
         public Collection<User> getAll() {
 			Sort sort = Sort.by(Sort.Direction.ASC, "firstName");
@@ -152,6 +163,7 @@ package com.services;
 				logger.error("Failed to delete habit with id: " + habitId, ex);
 			}
 			userRepo.deleteById(habitId);
+
 		}
 
 	}
