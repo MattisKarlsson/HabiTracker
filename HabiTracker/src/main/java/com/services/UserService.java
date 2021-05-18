@@ -22,6 +22,16 @@ package com.services;
 	import com.requests.UpdateHabitRequest;
 	import com.requests.UpdateUserRequest;
 
+
+	import com.entities.Habit;
+	import com.entities.User;
+	import com.repositories.HabitSqlRepository;
+	import com.repositories.UserSqlRepository;
+	import com.requests.AddHabitRequest;
+	import com.requests.AddUserRequest;
+	import com.requests.UpdateHabitRequest;
+	import com.requests.UpdateUserRequest;
+
 	@Service
 	@RequiredArgsConstructor
 	public class UserService {

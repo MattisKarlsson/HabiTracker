@@ -48,7 +48,6 @@ public class UserController {
 		return "Logging successful";
 	}
 
-
 	@GetMapping("/log")
 	public String testLogging(){
 
@@ -60,8 +59,6 @@ public class UserController {
 
 		return "Logging successful";
 	}
-
-
 
 	@GetMapping("/")
 	@ApiOperation(
