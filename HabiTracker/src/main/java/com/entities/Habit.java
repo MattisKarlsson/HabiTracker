@@ -14,21 +14,27 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+@ApiModel(description = "Add new habit request model.")
 @Data
 @Entity
 @Table(name = "app_habit")
 public class Habit {
     
+    @ApiModelProperty(notes = "Unique identifier for the habit.")
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private long habitId;
 
+    @ApiModelProperty(notes = "Habit name.")
     @Column(name = "habit_name")
     private String habitName;
 
+    @ApiModelProperty(notes = "Priority of habit.")
     @Column(name = "habit_priority")
     private int priority;
 

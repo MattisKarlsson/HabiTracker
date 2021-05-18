@@ -10,7 +10,6 @@ import lombok.Data;
 @ApiModel(description = "Add new user request")
 @Data
 public class AddUserRequest {
-
 	
 	@ApiModelProperty(notes = "The FirstName of the User")
 	@NotBlank(message = "FirstName is mandatory")
