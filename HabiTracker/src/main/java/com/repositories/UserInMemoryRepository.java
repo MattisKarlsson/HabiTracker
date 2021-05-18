@@ -12,7 +12,6 @@ import com.entities.User;
 @Service
 public class UserInMemoryRepository {
 
-
 	Map<Long, User> users = new HashMap<Long, User>();
 	
 	public Collection<User> getAll() {

@@ -6,7 +6,7 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,15 +25,29 @@ import com.services.UserService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/users/")
 public class UserController {
 	
 	Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	@Autowired
-	private UserService userService;
+	private final UserService userService;
+
+	@GetMapping("/log")
+	public String testLogging(){
+
+		logger.trace("TRACE Logging");
+		logger.debug("DEBUG Logging");
+		logger.info("INFO Logging");
+		logger.warn("WARN Logging");
+		logger.error("ERROR Logging");
+
+		return "Logging successful";
+	}
+
 
 	@GetMapping("/log")
 	public String testLogging(){
@@ -64,7 +78,7 @@ public class UserController {
 		
 		if (response == null) {
 			logger.warn("Couldn't find user by this id: " + id);
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Couldnt find any student with provided ID");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Couldnt find any user with provided ID");
 		}
 		return response;
 	}
@@ -91,8 +105,9 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{id}")
-	@ApiOperation(value = "Delete user",notes = "Deletes specified user/task.",response = User.class)
+	@ApiOperation(value = "Delete user",notes = "Deletes specified user.",response = User.class)
 	public void deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
 	}
 }
+
