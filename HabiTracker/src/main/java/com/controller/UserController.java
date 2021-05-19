@@ -48,18 +48,6 @@ public class UserController {
 		return "Logging successful";
 	}
 
-	@GetMapping("/log")
-	public String testLogging(){
-
-		logger.trace("TRACE Logging");
-		logger.debug("DEBUG Logging");
-		logger.info("INFO Logging");
-		logger.warn("WARN Logging");
-		logger.error("ERROR Logging");
-
-		return "Logging successful";
-	}
-
 	@GetMapping("/")
 	@ApiOperation(
 			value = "Get all Users",notes = "Fetches all users from the API",response = User.class,responseContainer = "List")		
