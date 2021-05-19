@@ -22,16 +22,6 @@ package com.services;
 	import com.requests.UpdateHabitRequest;
 	import com.requests.UpdateUserRequest;
 
-
-	import com.entities.Habit;
-	import com.entities.User;
-	import com.repositories.HabitSqlRepository;
-	import com.repositories.UserSqlRepository;
-	import com.requests.AddHabitRequest;
-	import com.requests.AddUserRequest;
-	import com.requests.UpdateHabitRequest;
-	import com.requests.UpdateUserRequest;
-
 	@Service
 	@RequiredArgsConstructor
 	public class UserService {
@@ -92,7 +82,7 @@ package com.services;
 				user.setHabits(habits);
 			}
 
-			logger.info("Successfully created new Student");
+			logger.info("Successfully created new User");
 			return user;
 
 		}
@@ -120,34 +110,21 @@ package com.services;
 
 		public Habit addHabit(AddHabitRequest request) {
 			var habit = new Habit();
+			var user = userRepo.findById(request.getUserId()).get();
+			habit.setUser(user);
+			habit.setHabitName(request.getHabitName());
+			habit.setPriority(request.getPriority());
 			habit = habitRepo.save(habit);
-
-			if(request.getHabits().size() > 0) {
-				var habits = new ArrayList<Habit>();
-				for(AddHabitRequest habitN : request.getHabits()) {
-					var newHabit = new Habit();
-					newHabit.setHabitName(habitN.getHabitName() != null ? habitN.getHabitName() : "NoName!");
-					habits.add(newHabit);
-				}
-				habitRepo.saveAll(habits);
-			}
+			
+			logger.info("Successfully created new Habit");
 			return habit;
-
 		}
+
 		public Habit updateHabit(Long habitId, UpdateHabitRequest request) {
 			Habit habit = habitRepo.findById(habitId).get();
 			habit.setHabitName(request.getHabitName());
+			habit.setPriority(request.getPriority());
 			habit = habitRepo.save(habit);
-
-			if(request.getHabits().size() > 0) {
-				var habits = new ArrayList<Habit>();
-				for(UpdateHabitRequest habitN : request.getHabits()) {
-					var newHabit = new Habit();
-					newHabit.setHabitName(habitN.getHabitName() != null ? habitN.getHabitName() : "NoName!");
-					habits.add(newHabit);
-				}
-				habitRepo.saveAll(habits);
-			}
 
 			logger.info("Updated Habit");
 			return habit;

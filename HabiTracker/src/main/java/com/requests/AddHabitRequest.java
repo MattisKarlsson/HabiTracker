@@ -1,8 +1,5 @@
 package com.requests;
 
-
-import java.util.List;
-
 import javax.validation.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModel;
@@ -18,8 +15,8 @@ public class AddHabitRequest {
     private String habitName;
 
     @ApiModelProperty(notes = "The priority of the habit")
-    @NotBlank(message = "Habit priority is mandatory")
     private int priority;
 
-    private List<AddHabitRequest> habits;
+    private long userId;
+
 }
