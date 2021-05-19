@@ -1,6 +1,6 @@
 Projekt HabiTracker
 
-Simpel CRUD SQL applikation för att "lätt" kunna lägga till användare och spåra sina vanor och tiden du spenderar på dem.
+Simpel CRUD SQL API för att "lätt" kunna lägga till användare och spåra sina vanor och tiden du spenderar på dem.
 
 Requirements:
 Maven
