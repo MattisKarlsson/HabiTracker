@@ -2,8 +2,10 @@ package com.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -18,15 +20,17 @@ import java.util.Collections;
 
 @EnableSwagger2
 
-@ComponentScan({"com.controller", "com.services", "com.repositories"})
+// removed ComponentScan for repositories since it will be scanned by using "EnableJpaRepositories"
+@ComponentScan({"com.controller", "com.services", "com.aop"})
+@EntityScan("com.entities")
+@EnableJpaRepositories("com.repositories")
 
 public class HabiTrackerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HabiTrackerApplication.class, args);
+	
 	}
-
-  
 	@Bean
 	public Docket swaggerConfiguration() {
 		// This returns a prepared Docket for Swagger. 
@@ -36,12 +40,8 @@ public class HabiTrackerApplication {
 				.apis(RequestHandlerSelectors.basePackage("com."))
 				.build()
 				.apiInfo(apiDetails());
-
 	}
-
-
-	
-	private ApiInfo apiDetails() {
+private ApiInfo apiDetails() {
 		return new ApiInfo(
 				"Habit API",
 				"Track your good and bad habits for a better life",
@@ -51,11 +51,13 @@ public class HabiTrackerApplication {
 							"Christian Torlegard",
 							"https://google.com",
 							"christian.torlegard@outlook.com"),							
-
 				"API License",
 				"https://google.com",
 		Collections.emptyList()
 		);
-    
 }
 }
+	
+
+	
+

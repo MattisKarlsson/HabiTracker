@@ -1,31 +1,22 @@
 package com.requests;
 
+import javax.validation.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @ApiModel(description = "Add new habit request")
-
+@Data
 public class AddHabitRequest {
 
-	@ApiModelProperty(notes = "Name of the habit to track")
-	private String habitName;
-	
-	@ApiModelProperty(notes = "Duration of your tracked habit")
-	private double habitDuration;
-	
+    @ApiModelProperty(notes = "The name of the habit")
+    @NotBlank(message = "Habit name is mandatory")
+    private String habitName;
 
-	public String getHabitName() {
-		return habitName;
-	}
-	public void setHabitName(String habitName) {
-		this.habitName = habitName;
-	}
-	public double getHabitDuration() {
-		return habitDuration;
-	}
-	public void setHabitDuration(double habitDuration) {
-		this.habitDuration = habitDuration;
-	}
-	
+    @ApiModelProperty(notes = "The priority of the habit")
+    private int priority;
+
+    private long userId;
+
 }

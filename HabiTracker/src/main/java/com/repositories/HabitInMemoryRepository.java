@@ -3,37 +3,32 @@ package com.repositories;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-
-import org.springframework.stereotype.Service;
 
 import com.entities.Habit;
 
-@Service
 public class HabitInMemoryRepository {
-
-
-	Map<UUID, Habit> habits = new HashMap<UUID, Habit>();
+    
+    Map<Long, Habit> habits = new HashMap<Long, Habit>();
 	
-	public Collection<Habit> getAll() {
+	public Collection<Habit> getHabits() {
 		return habits.values();
 	}
 	
-	public Habit getById(UUID id) {
-		return habits.get(id);
+	public Habit getByHabitId(Long habitId) {
+		return habits.get(habitId);
+	}
+
+    public Habit addHabit(Habit habit) {
+		habits.put(habit.getHabitId(), habit);
+		return habits.get(habit.getHabitId());
 	}
 	
-	public Habit addHabit(Habit habit) {
-		habits.put(habit.getId(), habit);
-		return habits.get(habit.getId());
+	public Habit updateHabit(Long habitId, Habit habit) {
+		habits.put(habitId, habit);
+		return habits.get(habitId);
 	}
 	
-	public Habit updateHabit(UUID id, Habit habit) {
-		habits.put(id, habit);
-		return habits.get(id);
-	}
-	
-	public void deleteHabit(UUID id) {
-		habits.remove(id);
+	public void deleteHabit(Long habitId) {
+		habits.remove(habitId);
 	}
 }
